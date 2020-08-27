@@ -7,10 +7,12 @@ import {
   ImageBackground,
   Image,
   TextInput,
-  FlatList
+  FlatList,
+  AsyncStorage
 } from 'react-native'
 import TodoItem from './TodoItem'
-
+import TopBar from './TopBar'
+import { useStore } from '../core/StoreProvider'
 type User = {
   username: string;
   password: string;
@@ -21,10 +23,11 @@ type HomeProps = {
   setUser: (user: User|null) => void;
 }
 
+const TODO_LIST_KEY = 'TODO_LIST_KEY'
+
 export default function Home(props: HomeProps) {
-  const { user, setUser } = props
+  const [store, setStore] = useStore()
   const [state, setState] = React.useState({
-    todoList: [],
     currentTodo: ''
   })
   return (
@@ -34,18 +37,17 @@ export default function Home(props: HomeProps) {
       }}
       style={StyleSheet.absoluteFillObject}
       >
+        <TopBar 
+          user={{
+            imageURL: 'https://images.unsplash.com/photo-1595857819837-1c820f33e62d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+            username: store.user.username
+          }}
+        />
       <View style={styles.container}>
         <View
           style={styles.innerContainer}
         >
           <View>
-            <View style={styles.infoContainer}>
-              <Image
-                source={{ uri:'https://images.unsplash.com/photo-1595857819837-1c820f33e62d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'}}
-                style={styles.image}
-              />
-              <Text style={styles.label}>{user?.username ?? 'Default Name'}</Text>
-            </View>
             <View style={styles.todoContainer}>
               <View
               style={{
@@ -68,9 +70,12 @@ export default function Home(props: HomeProps) {
                 <TouchableOpacity
                   style={{ flex: 1, backgroundColor: 'blue', borderRadius: 20, alignItems: 'center' }}
                   onPress={() =>{
+                    const newTodoList = [...store.todoList, state.currentTodo]
+                    setStore({
+                      todoList: newTodoList
+                    })
                     setState({
                       ...state,
-                      todoList: [...state.todoList, state.currentTodo],
                       currentTodo: ''
                     })
                   }}
@@ -82,7 +87,7 @@ export default function Home(props: HomeProps) {
                 style={{
                   marginTop: 20,
                 }}
-                data={state.todoList}
+                data={store.todoList}
                 ItemSeparatorComponent={() => (
                   <View style={{height: 10}}/>
                 )}
@@ -91,10 +96,12 @@ export default function Home(props: HomeProps) {
                     key={item}
                     todo={item}
                     onDelete={() => {
-                      state.todoList.splice(index, 1)
+                      store.todoList.splice(index, 1)
+                      setStore({
+                        todoList: store.todoList
+                      })
                       setState({
                         ...state,
-                        todoList: state.todoList
                       })
                     }}
                   />
@@ -104,7 +111,10 @@ export default function Home(props: HomeProps) {
             <TouchableOpacity
               style={styles.signoutButton}
               onPress={() => {
-                setUser(null)
+                // setUser(null)
+                setStore({
+                  user: null
+                })
               }}
             >
               <Text style={styles.signoutText}>Signout</Text>

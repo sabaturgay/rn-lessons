@@ -1,5 +1,6 @@
 import React from 'react'
 import { AsyncStorage } from 'react-native'
+import { useStore } from '../core/StoreProvider'
 
 export type SigninProviderProps = {
   Signin: React.FC;
@@ -8,27 +9,14 @@ export type SigninProviderProps = {
 
 export default function SigninProvider(props: SigninProviderProps) {
   const { Home, Signin } = props
-  const [user, setUserData] = React.useState(null)
-  React.useEffect(() => {
-    AsyncStorage.getItem('user', (error, result) => {
-      setUserData(result ? JSON.parse(result) : null)
-    })
-  }, [])
-  const setUser = React.useCallback((userData) => {
-    AsyncStorage.setItem('user', JSON.stringify(userData))
-    setUserData(userData)
-  }, [])
-  if (user) {
+  const [store, setStore]  = useStore()
+  console.log('Store:', store)
+  if (store.user) {
     return (
-      <Home
-        user={user}
-        setUser={setUser}
-      />
+      <Home />
     )
   }
   return (
-    <Signin
-      setUser={setUser}
-    />
+    <Signin />
   )
 }

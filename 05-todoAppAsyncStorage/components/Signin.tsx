@@ -6,7 +6,7 @@ import { StyleSheet,
   TouchableOpacity,
   ImageBackground
  } from 'react-native'
-
+import {useStore } from '../core/StoreProvider'
 type User = {
   username: string;
   password: string;
@@ -17,7 +17,7 @@ type SigninProps = {
 }
 
 export default function Signin(props: SigninProps) {
-  const { setUser } = props
+  const [store, setStore] = useStore()
   const [state, setState] = React.useState({ username: '', password: '' })
   return (
     <ImageBackground
@@ -59,7 +59,9 @@ export default function Signin(props: SigninProps) {
             <TouchableOpacity
               style={styles.signinButton}
               onPress={() => {
-                setUser(state)
+                setStore({
+                  user: state
+                })
               }}
             >
               <Text style={styles.signinText}>Signin</Text>

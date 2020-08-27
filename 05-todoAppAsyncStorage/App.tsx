@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-nativ
 import SigninProvider from './components/SigninProvider'
 import Home from './components/Home'
 import Signin from './components/Signin'
+import { StoreProvider } from './core/StoreProvider'
 
 // SigninProvider
 //   - Signin (setUser)
@@ -10,10 +11,12 @@ import Signin from './components/Signin'
 
 export default function App() {
   return (
-    <SigninProvider
-      Home={Home}
-      Signin={Signin}
-    />
+    <StoreProvider>
+      <SigninProvider
+        Home={Home}
+        Signin={Signin}
+      />
+    </StoreProvider>
   );
 }
 
