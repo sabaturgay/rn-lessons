@@ -9150,10 +9150,10 @@ union-value@^1.0.0:
     is-extendable "^0.1.1"
     set-value "^2.0.1"
 
-unitx-ui@^0.0.267:
-  version "0.0.267"
-  resolved "https://registry.yarnpkg.com/unitx-ui/-/unitx-ui-0.0.267.tgz#d6e691e1b4db64b9d9296c828970ab09fa6bc3d2"
-  integrity sha512-QcXORtLAopjtWWDVVVymzCtrmNv4JwiwqNc7ADz0k4ANfPte777KZZchTwF5UXOmh9GCFKmqHRJoxJlebnbEGQ==
+unitx-ui@^0.0.268:
+  version "0.0.268"
+  resolved "https://registry.yarnpkg.com/unitx-ui/-/unitx-ui-0.0.268.tgz#6bc1355b58b6cb16e0d60c0376304413a4b6afa3"
+  integrity sha512-ZpUXsvG8IJnLZRQVNfU/3N3i04Y0ufBTna4FODBqh5WNLrs+oD9HS/Qrge/WyJ2DhlMoncrNid3XHXctQEH78w==
   dependencies:
     "@eva-design/eva" "^2.0.0"
     "@eva-design/material" "^2.0.0"
@@ -9338,10 +9338,10 @@ unitx@^0.0.361:
     victor "^1.1.0"
     xstate "^4.9.1"
 
-unitx@^0.0.408:
-  version "0.0.408"
-  resolved "https://registry.yarnpkg.com/unitx/-/unitx-0.0.408.tgz#1f7782d168f527cc0d0a14c07c5dcdad27e18cb4"
-  integrity sha512-uVBJ8aVloDJLr4pwuxE1iLyXT7rSI4uiIAaGLgGdalyzuRMMGQqoAmj/M3Ly6dPISDJxxf4Hzu0z62bOz2mktg==
+unitx@^0.0.410:
+  version "0.0.410"
+  resolved "https://registry.yarnpkg.com/unitx/-/unitx-0.0.410.tgz#db88dffa16bc3b640656993766e0b7dd436a8b1e"
+  integrity sha512-LkrQmNF0/0y/kqyM6iduPhjELfN4ATUweIBpnT5IzfWRGjzgLj1/C/sfV4EdzOK6pnrr3rC/xf/vFouSPqwd1w==
   dependencies:
     "@xstate/test" "^0.3.0"
     ajv "^6.12.0"
