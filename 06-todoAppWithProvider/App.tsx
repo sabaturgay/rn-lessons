@@ -33,7 +33,7 @@ export default function App() {
         Home={Home}
         Signin={Signin}
       />
-      <Selection/>
+      <Selection />
     </Provider>
   );
 }

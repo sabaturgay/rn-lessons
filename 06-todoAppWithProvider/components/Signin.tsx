@@ -6,7 +6,6 @@ import { StyleSheet,
   TouchableOpacity,
   ImageBackground
  } from 'react-native'
- import { signin } from '../store/actions/user'
 import { useSelector } from '../core/StoreProvider'
 type User = {
   username: string;
@@ -62,13 +61,6 @@ export default function Signin(props: SigninProps) {
               onPress={async () => {
                 updateState((draft) => {
                   draft.user = state
-                })
-                await signin((state) => {
-                  updateState
-                  if (state.user) {
-                     exit(updateState)
-                  }
-                  return updateState
                 })
                 // await signup(updateState)
                 
